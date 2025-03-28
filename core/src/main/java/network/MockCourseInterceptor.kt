@@ -7,7 +7,7 @@ import okhttp3.Protocol
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 
-class MockInterceptor(
+class MockCourseInterceptor(
     private val context: Context,
     private val jsonFileName: String = "courses.json"
 ) : Interceptor {
