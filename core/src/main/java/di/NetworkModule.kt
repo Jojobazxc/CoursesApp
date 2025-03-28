@@ -7,7 +7,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import network.ApiService
-import network.MockInterceptor
+import network.MockAuthInterceptor
+import network.MockCourseInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,7 +25,8 @@ object NetworkModule {
         @ApplicationContext context: Context
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(MockInterceptor(context))
+            .addInterceptor(MockAuthInterceptor("auth"))
+            .addInterceptor(MockCourseInterceptor(context))
             .build()
     }
 

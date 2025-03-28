@@ -16,3 +16,12 @@ data class Course(
     @SerializedName("hasLike") val isLiked: Boolean,
     @SerializedName("publishDate") val publishDate: String
 )
+
+data class AuthData(
+    val email: String,
+    val password: String,
+)
+
+data class Token(
+    @SerializedName("token") val token: String
+)
