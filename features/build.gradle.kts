@@ -2,16 +2,14 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.example.coursesapp"
+    namespace = "com.example.features"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.coursesapp"
+        applicationId = "com.example.features"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -42,9 +40,6 @@ android {
 }
 
 dependencies {
-    //Modules
-    implementation(project(":core"))
-    implementation(project(":features"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -61,9 +56,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    //Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
 }
