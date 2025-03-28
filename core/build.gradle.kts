@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.library")
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
@@ -11,13 +11,9 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.core"
-        minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
+        minSdk = 21
     }
 
     buildTypes {
@@ -43,6 +39,7 @@ android {
 
 dependencies {
 
+    androidTestImplementation(libs.androidx.multidex)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -60,8 +57,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //Retrofit
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
     implementation (libs.logging.interceptor)
 
     //Hilt
