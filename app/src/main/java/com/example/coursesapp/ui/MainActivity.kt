@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.features.ui.theme.CoursesScreen
+import com.example.features.main.CoursesScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
