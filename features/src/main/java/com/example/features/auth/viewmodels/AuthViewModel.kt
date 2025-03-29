@@ -1,4 +1,4 @@
-package viewModels
+package com.example.features.auth.viewmodels
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingViewModel @Inject constructor(
+class AuthViewModel @Inject constructor(
     private val prefs: SharedPreferences
 ) : ViewModel() {
     fun saveToken(token: String) {
