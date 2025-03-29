@@ -44,7 +44,9 @@ android {
 dependencies {
     //Modules
     implementation(project(":core"))
-    implementation(project(":features"))
+    implementation(project(":features:onboarding"))
+    implementation(project(":features:main"))
+    implementation(project(":features:authorization"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.features.onboarding.OnboardingScreen
+import com.example.onboarding.ui.OnboardingScreen
 import navigation.Screen
 
 @Composable
