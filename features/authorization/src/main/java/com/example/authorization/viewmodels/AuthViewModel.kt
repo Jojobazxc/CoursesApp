@@ -2,8 +2,8 @@ package com.example.authorization.viewmodels
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
+import com.example.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
-import network.ApiService
 import javax.inject.Inject
 
 @HiltViewModel

@@ -39,7 +39,7 @@ android {
 
 dependencies {
     //Modules
-    implementation(project(":core"))
+    implementation(project(":core:network"))
     implementation(project(":core:ui"))
 
     implementation(libs.androidx.core.ktx)
