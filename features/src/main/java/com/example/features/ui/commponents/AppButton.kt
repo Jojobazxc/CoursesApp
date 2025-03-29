@@ -20,14 +20,14 @@ import com.example.features.ui.theme.mainFontFamily
 fun AppButton(
     text: String,
     route: String,
-    navController: NavController,
+    onNavigateToAuth: () -> Unit,
     enabled: Boolean,
     modifier: Modifier
 ) {
     Button(
         modifier = modifier,
         onClick = {
-            navController.navigate(route)
+            onNavigateToAuth.invoke()
         },
         enabled = enabled,
         shape = RoundedCornerShape(100.dp),
