@@ -12,15 +12,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.features.onboarding.components.CoursesRow
 import com.example.features.onboarding.components.Header
 import com.example.features.ui.commponents.AppButton
 import com.example.features.ui.theme.MainBGColor
 
 @Composable
-fun OnboardingScreen(navController: NavController) {
+fun OnboardingScreen(
+    onNavigateToAuth: () -> Unit
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -61,7 +61,7 @@ fun OnboardingScreen(navController: NavController) {
             AppButton(
                 text = "Продолжить",
                 route = "",
-                navController = navController,
+                onNavigateToAuth = onNavigateToAuth,
                 enabled = true,
                 modifier = Modifier
                     .padding(
@@ -79,7 +79,5 @@ fun OnboardingScreen(navController: NavController) {
 @Composable
 @Preview
 private fun Preview() {
-    OnboardingScreen(
-        navController = rememberNavController()
-    )
+
 }
