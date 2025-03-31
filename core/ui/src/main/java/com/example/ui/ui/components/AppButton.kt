@@ -17,15 +17,14 @@ import com.example.ui.ui.theme.mainFontFamily
 @Composable
 fun AppButton(
     text: String,
-    route: String,
-    onNavigateToAuth: () -> Unit,
+    onClick: () -> Unit,
     enabled: Boolean,
     modifier: Modifier
 ) {
     Button(
         modifier = modifier,
         onClick = {
-            onNavigateToAuth.invoke()
+            onClick.invoke()
         },
         enabled = enabled,
         shape = RoundedCornerShape(100.dp),

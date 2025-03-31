@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,14 +19,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 object NetworkModule {
 
     @Provides
-    fun provideBaseUrl() = "https://api.example.com/"
+    fun provideBaseUrl() = "https://api.example.com"
 
     @Provides
     fun provideOkHttpClient(
         @ApplicationContext context: Context
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(MockAuthInterceptor("auth"))
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(MockAuthInterceptor("/auth"))
             .addInterceptor(MockCourseInterceptor(context))
             .build()
     }

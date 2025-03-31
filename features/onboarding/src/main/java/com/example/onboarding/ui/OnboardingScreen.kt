@@ -59,8 +59,7 @@ fun OnboardingScreen(
         item {
             AppButton(
                 text = "Продолжить",
-                route = "",
-                onNavigateToAuth = onNavigateToAuth,
+                onClick = onNavigateToAuth,
                 enabled = true,
                 modifier = Modifier
                     .padding(

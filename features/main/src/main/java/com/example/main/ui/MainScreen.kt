@@ -8,7 +8,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.main.viewmodels.CoursesViewModel
 
 @Composable
-fun CoursesScreen() {
+fun MainScreen(
+    onNavigateToFavouritesScreen: () -> Unit,
+    onNavigateToProfileScreen:() -> Unit,
+) {
     val viewModel: CoursesViewModel = hiltViewModel()
     val courses by viewModel.courses.collectAsState()
 
