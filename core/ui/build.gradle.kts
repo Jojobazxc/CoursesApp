@@ -52,4 +52,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("dev.chrisbanes.haze:haze:1.5.2")
+    implementation("dev.chrisbanes.haze:haze-materials:1.5.2")
 }
