@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -26,15 +27,11 @@ import com.example.ui.ui.theme.mainFontFamily
 
 @Composable
 fun AppNavigationBar(
+    currentScreen: String,
     onNavigateToMain: () -> Unit,
     onNavigateToFavourites: () -> Unit,
     onNavigateToProfile: () -> Unit
 ) {
-
-    var selectedItemIndex by rememberSaveable {
-        mutableStateOf(0)
-    }
-
     val listOfNavBarItems = listOf(
         BottomNavigationItem(
             title = "Главная",
@@ -50,63 +47,47 @@ fun AppNavigationBar(
             title = "Аккаунт",
             selectedIcon = ImageVector.vectorResource(R.drawable.ic_bottom_bar_profile),
             unselectedIcon = ImageVector.vectorResource(R.drawable.ic_bottom_bar_profile),
-        ),
-
         )
+    )
+
     NavigationBar(
         containerColor = TextFieldColor,
     ) {
-        listOfNavBarItems.forEachIndexed { index, bottomNavigationItem ->
+        listOfNavBarItems.forEachIndexed { index, item ->
+            val isSelected = when (item.title) {
+                "Главная" -> currentScreen == "main_screen"
+                "Избранное" -> currentScreen == "favourites_screen"
+                "Аккаунт" -> currentScreen == "profile"
+                else -> false
+            }
+
             NavigationBarItem(
-                selected = selectedItemIndex == index,
-                onClick = when (bottomNavigationItem.title) {
-                    "Главная" -> {
-                        {
-                            selectedItemIndex = index
-                            onNavigateToMain.invoke()
-                        }
-                    }
-
-                    "Избранное" -> {
-                        {
-                            selectedItemIndex = index
-                            onNavigateToFavourites.invoke()
-                        }
-
-                    }
-
-                    "Аккаунт" -> {
-                        {
-                            selectedItemIndex = index
-                            onNavigateToProfile.invoke()
-                        }
-
-                    }
-
-                    else -> {
-                        {}
+                selected = isSelected,
+                onClick = {
+                    when (item.title) {
+                        "Главная" -> onNavigateToMain()
+                        "Избранное" -> onNavigateToFavourites()
+                        "Аккаунт" -> onNavigateToProfile()
                     }
                 },
                 icon = {
                     Image(
-                        imageVector = bottomNavigationItem.selectedIcon,
-                        contentDescription = bottomNavigationItem.title,
-                        colorFilter = if (selectedItemIndex == index) ColorFilter.tint(
-                            GreenTextAndButtonColor
-                        ) else ColorFilter.tint(WhiteTextColor)
+                        imageVector = if (isSelected) item.selectedIcon else item.unselectedIcon,
+                        contentDescription = item.title,
+                        colorFilter = if (isSelected) {
+                            ColorFilter.tint(GreenTextAndButtonColor)
+                        } else {
+                            ColorFilter.tint(WhiteTextColor)
+                        }
                     )
                 },
-                modifier = Modifier
-                    .background(TextFieldColor),
-                enabled = true,
                 label = {
                     Text(
-                        text = bottomNavigationItem.title,
+                        text = item.title,
                         fontFamily = mainFontFamily,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 12.sp,
-                        lineHeight = 15.sp,
-                        letterSpacing = 0.4.sp,
+                        color = if (isSelected) GreenTextAndButtonColor else WhiteTextColor
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
@@ -114,8 +95,8 @@ fun AppNavigationBar(
                     selectedTextColor = GreenTextAndButtonColor,
                     unselectedIconColor = WhiteTextColor,
                     unselectedTextColor = WhiteTextColor,
-                    indicatorColor = IndicatorNavBarColor,
-                ),
+                    indicatorColor = IndicatorNavBarColor
+                )
             )
         }
     }

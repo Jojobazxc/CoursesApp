@@ -59,7 +59,8 @@ fun MainScreen(
                 AppNavigationBar(
                     onNavigateToMain = {},
                     onNavigateToFavourites = onNavigateToFavouritesScreen,
-                    onNavigateToProfile = onNavigateToProfileScreen
+                    onNavigateToProfile = onNavigateToProfileScreen,
+                    currentScreen = "main_screen"
                 )
             },
         ) { innerPadding ->

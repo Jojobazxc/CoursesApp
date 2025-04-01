@@ -1,6 +1,8 @@
 package com.example.coursesapp.navigation
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -11,10 +13,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.authorization.ui.AuthScreen
 import com.example.authorization.viewmodels.AuthViewModel
+import com.example.favourites.FavouritesScreen
 import com.example.main.ui.MainScreen
 import com.example.onboarding.ui.OnboardingScreen
 import com.example.navigation.Screen
 
+@RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun MainNavGraph(
     navController: NavHostController = rememberNavController()
@@ -29,18 +33,34 @@ fun MainNavGraph(
         onboardingScreen(navController)
         authorizationScreen(navController)
         mainScreen(navController)
+        favouritesScreen(navController)
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.S)
 private fun NavGraphBuilder.mainScreen(navController: NavHostController) {
     composable(Screen.MainScreen.route) {
         MainScreen(
             onNavigateToFavouritesScreen = {
-
+                navController.navigate(Screen.FavouritesScreen.route)
             },
             onNavigateToProfileScreen = {
 
             }
+        )
+    }
+}
+
+private fun NavGraphBuilder.favouritesScreen(navController: NavHostController) {
+    composable(Screen.FavouritesScreen.route) {
+        FavouritesScreen(
+            onNavigateToMain = {
+                navController.navigate(Screen.MainScreen.route)
+            },
+            onNavigateToFavourites = {
+                navController.navigate(Screen.FavouritesScreen.route)
+            },
+            onNavigateToProfile = {}
         )
     }
 }
