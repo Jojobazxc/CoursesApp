@@ -57,7 +57,7 @@ fun AppNavigationBar(
             val isSelected = when (item.title) {
                 "Главная" -> currentScreen == "main_screen"
                 "Избранное" -> currentScreen == "favourites_screen"
-                "Аккаунт" -> currentScreen == "profile"
+                "Аккаунт" -> currentScreen == "profile_screen"
                 else -> false
             }
 

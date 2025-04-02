@@ -17,6 +17,7 @@ import com.example.favourites.ui.FavouritesScreen
 import com.example.main.ui.MainScreen
 import com.example.onboarding.ui.OnboardingScreen
 import com.example.navigation.Screen
+import com.example.profile.ProfileScreen
 
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
@@ -34,6 +35,7 @@ fun MainNavGraph(
         authorizationScreen(navController)
         mainScreen(navController)
         favouritesScreen(navController)
+        profileScreen(navController)
     }
 }
 
@@ -45,7 +47,7 @@ private fun NavGraphBuilder.mainScreen(navController: NavHostController) {
                 navController.navigate(Screen.FavouritesScreen.route)
             },
             onNavigateToProfileScreen = {
-
+                navController.navigate(Screen.ProfileScreen.route)
             }
         )
     }
@@ -60,7 +62,9 @@ private fun NavGraphBuilder.favouritesScreen(navController: NavHostController) {
             onNavigateToFavourites = {
                 navController.navigate(Screen.FavouritesScreen.route)
             },
-            onNavigateToProfile = {}
+            onNavigateToProfile = {
+                navController.navigate(Screen.ProfileScreen.route)
+            }
         )
     }
 }
@@ -84,6 +88,22 @@ private fun NavGraphBuilder.authorizationScreen(navController: NavHostController
                         inclusive = true
                     }
                 }
+            }
+        )
+    }
+}
+
+private fun NavGraphBuilder.profileScreen(navController: NavHostController) {
+    composable(Screen.ProfileScreen.route) {
+        ProfileScreen(
+            onNavigateToMain = {
+                navController.navigate(Screen.MainScreen.route)
+            },
+            onNavigateToFavourites = {
+                navController.navigate(Screen.FavouritesScreen.route)
+            },
+            onNavigateToProfile = {
+                navController.navigate(Screen.ProfileScreen.route)
             }
         )
     }
