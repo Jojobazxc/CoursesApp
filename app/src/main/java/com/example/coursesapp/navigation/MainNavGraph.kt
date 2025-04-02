@@ -13,7 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.authorization.ui.AuthScreen
 import com.example.authorization.viewmodels.AuthViewModel
-import com.example.favourites.FavouritesScreen
+import com.example.favourites.ui.FavouritesScreen
 import com.example.main.ui.MainScreen
 import com.example.onboarding.ui.OnboardingScreen
 import com.example.navigation.Screen
